@@ -1,6 +1,6 @@
 package com.example.dbservice.service.impl;
 
-import com.example.dbservice.pojo.dao.TupleDTO;
+import com.example.dbservice.pojo.dto.DynamicQueryDTO;
 import com.example.dbservice.repository.DynamicQueryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class DynamicQueryService {
         this.dynamicQueryRepository = dynamicQueryRepository;
     }
 
-    public List<TupleDTO> specialSearch(Integer age, String name){
+    public List<DynamicQueryDTO> specialSearch(Integer age, String name){
         return this.dynamicQueryRepository.specialSearch(age, name);
     }
 

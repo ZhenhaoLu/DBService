@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Employees {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
     private String name;
@@ -18,7 +18,7 @@ public class Employees {
     private Integer age;
     @Column
     private Integer salary;
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_id")
     private Departments department;
 }

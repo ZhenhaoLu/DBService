@@ -1,6 +1,6 @@
 package com.example.dbservice.controller;
 
-import com.example.dbservice.pojo.dao.TupleDTO;
+import com.example.dbservice.pojo.dto.DynamicQueryDTO;
 import com.example.dbservice.service.impl.DynamicQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class DynamicQueryController {
     }
 
     @GetMapping("/employee/{age}/{name}")
-    public ResponseEntity<List<TupleDTO>> findEmployeeById(@PathVariable Integer age, @PathVariable String name){
+    public ResponseEntity<List<DynamicQueryDTO>> findEmployeeById(@PathVariable Integer age, @PathVariable String name){
         return new ResponseEntity<>(this.dynamicQueryService.specialSearch(age, name), HttpStatus.OK);
     }
 }

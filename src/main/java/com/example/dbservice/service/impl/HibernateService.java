@@ -1,6 +1,6 @@
 package com.example.dbservice.service.impl;
 
-import com.example.dbservice.pojo.dao.EmployeeDAO;
+import com.example.dbservice.pojo.dto.EmployeeDTO;
 import com.example.dbservice.pojo.entity.Departments;
 import com.example.dbservice.pojo.entity.Employees;
 import com.example.dbservice.repository.HibernateDepartmentRepository;
@@ -20,21 +20,21 @@ public class HibernateService implements IDBService {
         this.departmentRepository = departmentRepository;
     }
 
-    public EmployeeDAO findEmployeeById(String id){
+    public EmployeeDTO findEmployeeById(String id){
         Employees res = this.emRepository.findByID(id);
-        return new EmployeeDAO(res);
+        return new EmployeeDTO(res);
     }
 
-    public Integer insertEmployee(EmployeeDAO employeeDAO){
+    public Integer insertEmployee(EmployeeDTO employeeDAO){
         Employees e = IDBService.setEmployees(employeeDAO);
         return this.emRepository.insertEmployee(e);
     }
 
-    public EmployeeDAO updateEmployee(EmployeeDAO employeeDAO){
+    public EmployeeDTO updateEmployee(EmployeeDTO employeeDAO){
         Employees e = IDBService.setEmployees(employeeDAO);
         e.setId(employeeDAO.getId());
         e = this.emRepository.updateEmployee(e);
-        return new EmployeeDAO(e);
+        return new EmployeeDTO(e);
     }
 
     public void deleteEmployee(String id){
@@ -46,17 +46,4 @@ public class HibernateService implements IDBService {
     public Departments findDepartmentById(String id){
         return this.departmentRepository.findByID(id);
     }
-
-//    public static Employees setEmployees(EmployeeDAO employeeDAO){
-//        Employees e = new Employees();
-//        e.setAge(employeeDAO.getAge());
-//        e.setName(employeeDAO.getName());
-//        e.setSalary(employeeDAO.getSalary());
-//        // I can also search database to get all info of the departments, but it takes longer time
-//        // if error, both methods will throw errors (Constraint Violate or no result found)
-//        Departments dept_id = new Departments();
-//        dept_id.setId(employeeDAO.getDept_id());
-//        e.setDepartment(dept_id);
-//        return e;
-//    }
 }

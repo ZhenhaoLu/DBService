@@ -1,21 +1,20 @@
-package com.example.dbservice.pojo.dao;
+package com.example.dbservice.pojo.dto;
 
 import com.example.dbservice.pojo.entity.Employees;
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 //@Entity
 @Data
 @NoArgsConstructor
-public class EmployeeDAO {
+public class EmployeeDTO {
     private Integer id;
     private String name;
     private Integer age;
     private Integer salary;
     private Integer dept_id;
 
-    public EmployeeDAO(Employees employees){
+    public EmployeeDTO(Employees employees){
         this.id = employees.getId();
         this.name = employees.getName();
         this.age = employees.getAge();

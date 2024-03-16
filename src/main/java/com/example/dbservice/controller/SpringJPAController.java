@@ -1,6 +1,6 @@
 package com.example.dbservice.controller;
 
-import com.example.dbservice.pojo.dao.EmployeeDAO;
+import com.example.dbservice.pojo.dto.EmployeeDTO;
 import com.example.dbservice.service.impl.JPAService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,18 +20,18 @@ public class SpringJPAController {
     }
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<EmployeeDAO> findEmployeeById(@PathVariable String id){
+    public ResponseEntity<EmployeeDTO> findEmployeeById(@PathVariable String id){
         return new ResponseEntity<>(this.jpaService.findEmployeeById(id), HttpStatus.OK);
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<String> createNewEmployee(@RequestBody EmployeeDAO e){
+    public ResponseEntity<String> createNewEmployee(@RequestBody EmployeeDTO e){
         Integer res = this.jpaService.insertEmployee(e);
         return new ResponseEntity<>(res.toString(), HttpStatus.OK);
     }
 
     @PutMapping("/employee")
-    public ResponseEntity<EmployeeDAO> updateEmployee(@RequestBody EmployeeDAO e){
+    public ResponseEntity<EmployeeDTO> updateEmployee(@RequestBody EmployeeDTO e){
         return new ResponseEntity<>(this.jpaService.updateEmployee(e), HttpStatus.OK);
     }
 

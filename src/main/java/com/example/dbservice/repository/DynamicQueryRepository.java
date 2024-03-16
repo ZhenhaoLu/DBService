@@ -1,13 +1,10 @@
 package com.example.dbservice.repository;
 
-import com.example.dbservice.pojo.dao.TupleDTO;
+import com.example.dbservice.pojo.dto.DynamicQueryDTO;
 import com.example.dbservice.pojo.entity.Departments;
 import com.example.dbservice.pojo.entity.Employees;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Parameter;
-import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.*;
-import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +21,8 @@ public class DynamicQueryRepository {
         this.criteriaBuilder = entityManager.getCriteriaBuilder();
     }
 
-    public List<TupleDTO> specialSearch(Integer age, String departmentName){
-        CriteriaQuery<TupleDTO> query = this.criteriaBuilder.createQuery(TupleDTO.class);
+    public List<DynamicQueryDTO> specialSearch(Integer age, String departmentName){
+        CriteriaQuery<DynamicQueryDTO> query = this.criteriaBuilder.createQuery(DynamicQueryDTO.class);
         Root<Employees> employeesRoot = query.from(Employees.class);
         Join<Employees, Departments> eDJoin = employeesRoot.join("department", JoinType.INNER);
         Predicate ageCondition = this.criteriaBuilder.greaterThan(employeesRoot.get("age"), age);
@@ -34,13 +31,6 @@ public class DynamicQueryRepository {
         query.multiselect(employeesRoot.get("name").alias("employeeName"),
                 employeesRoot.get("age").alias("employeeAge"), employeesRoot.get("salary").alias("employeeSalary"),
                 eDJoin.get("name").alias("departmentName")).where(finalCondition);
-//        CriteriaQuery<Tuple> qq = this.criteriaBuilder.createTupleQuery();
-//        Root<Employees> employeesRoot = qq.from(Employees.class);
-//        Root<Departments> departmentsRoot = qq.from(Departments.class);
-//        qq.multiselect(employeesRoot, departmentsRoot);
-//        System.out.println("Here");
-//        System.out.println(this.entityManager.createQuery(qq).getResultList().get(0).get("salary"));
-//        return null;
         return this.entityManager.createQuery(query).getResultList();
     }
 }

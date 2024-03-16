@@ -1,7 +1,5 @@
 package com.example.dbservice.repository;
 
-import com.example.dbservice.pojo.dao.EmployeeDAO;
-import com.example.dbservice.pojo.entity.Departments;
 import com.example.dbservice.pojo.entity.Employees;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -23,8 +21,7 @@ public class HibernateEmployeeRepository {
     public Employees findByID(String employee_id){
        Query query = entityManager.createQuery("select e from Employees e where e.id = ?1");
        query.setParameter(1, employee_id);
-       Employees res = (Employees) query.getSingleResult();
-       return res;
+       return (Employees) query.getSingleResult();
     }
 
     @Transactional

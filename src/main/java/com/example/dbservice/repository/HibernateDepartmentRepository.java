@@ -1,7 +1,6 @@
 package com.example.dbservice.repository;
 
 import com.example.dbservice.pojo.entity.Departments;
-import com.example.dbservice.pojo.entity.Employees;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ public class HibernateDepartmentRepository {
     public Departments findByID(String department_id){
         Query query = entityManager.createQuery("select d from Departments d where d.id = ?1");
         query.setParameter(1, department_id);
-        Departments res = (Departments) query.getSingleResult();
-        return res;
+        return (Departments) query.getSingleResult();
     }
 }

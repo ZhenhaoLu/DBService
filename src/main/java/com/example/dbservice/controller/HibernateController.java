@@ -1,8 +1,6 @@
 package com.example.dbservice.controller;
 
-import com.example.dbservice.pojo.dao.EmployeeDAO;
-import com.example.dbservice.pojo.entity.Departments;
-import com.example.dbservice.pojo.entity.Employees;
+import com.example.dbservice.pojo.dto.EmployeeDTO;
 import com.example.dbservice.service.IDBService;
 import com.example.dbservice.service.impl.HibernateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +20,18 @@ public class HibernateController {
     }
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<EmployeeDAO> findEmployeeById(@PathVariable String id){
+    public ResponseEntity<EmployeeDTO> findEmployeeById(@PathVariable String id){
         return new ResponseEntity<>(hibernateService.findEmployeeById(id), HttpStatus.OK);
     }
 
     @PostMapping("/employee")
-    public ResponseEntity<String> createNewEmployee(@RequestBody EmployeeDAO employeeDAO){
+    public ResponseEntity<String> createNewEmployee(@RequestBody EmployeeDTO employeeDAO){
         Integer res = hibernateService.insertEmployee(employeeDAO);
         return new ResponseEntity<>(res.toString(), HttpStatus.OK);
     }
 
     @PutMapping("/employee")
-    public ResponseEntity<EmployeeDAO> updateEmployee(@RequestBody EmployeeDAO employeeDAO){
+    public ResponseEntity<EmployeeDTO> updateEmployee(@RequestBody EmployeeDTO employeeDAO){
         return new ResponseEntity<>(hibernateService.updateEmployee(employeeDAO), HttpStatus.OK);
     }
 
@@ -43,8 +41,8 @@ public class HibernateController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-//    @GetMapping("/department/{id}")
-//    public ResponseEntity<Departments> findDepartmentById(@PathVariable String id){
-//        return new ResponseEntity<>(hibernateService.find(id), HttpStatus.OK);
-//    }
+    @GetMapping("/department/{id}")
+    public ResponseEntity<String> findDepartmentById(@PathVariable String id){
+        return new ResponseEntity<>(hibernateService.findDepartmentById(id).getName(), HttpStatus.OK);
+    }
 }
