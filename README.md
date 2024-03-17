@@ -1,7 +1,9 @@
 # DataBase CRUD
 
 ### Configuration
-* Database: PostgreSQL with existing tables and data (see xxx.txt for database initialization)
+* Database: PostgreSQL with existing tables and data (see "Database Initialization.txt" for database initialization)
+* There are some example requests in example.txt
+* The design of Rest API is in RestAPI.txt
 
 ### Program Introduction
 
@@ -18,6 +20,4 @@ both tables are similar):
   * Since JPA Repository doesn't accept "insert into", I used extended method "JPARepository.save()" instead (Although native SQL also works)
 * Dynamic Query with JPA Criteria Query
   * A single search query: "select e.name, e.age, e.salary, d.name from employees e inner join departments d on e.dept_id = d.id where e.age > {age} and d.name = {department_name}"
-
-#### You can view all example requests in xxx.txt
 
