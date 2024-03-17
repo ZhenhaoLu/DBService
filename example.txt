@@ -1,0 +1,19 @@
+Example for CRUD, works for both hibernate and jpa if you use the queries in "Database Initialization.txt"
+    Research: GET /{version}/employee/0
+    Insert: POST /{version}/employee
+        request body = {
+                            "name": "Test Employee",
+                            "age": 54,
+                            "salary": 101,
+                            "dept_id": 0
+                       }
+    Update PUT /{version}/employee
+        request body = {
+                            "id": {the number return by insert api}
+                            "name": "Test Employee2",
+                            "age": 55,
+                            "salary": 1000,
+                            "dept_id": 0
+                       }
+    Delete DELETE /{version}/employee/{the number return by insert api}
+    dynamic query: GET /employee/15/Department0

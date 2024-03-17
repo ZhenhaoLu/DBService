@@ -1,0 +1,26 @@
+-- Create Tables
+create table departments(
+	"id" integer primary key,
+	"name" varchar(255) not null
+);
+create table employees(
+	"id" serial primary key,
+	"name" varchar(255) not null,
+	"age" integer,
+	"salary" integer,
+	"dept_id" integer references "departments"("id")
+);
+
+-- Insert Data
+insert into departments values
+(0, 'Department0'),
+(1, 'Department1');
+
+insert into employees values
+(0, 'Administrator', 25, 1000000, 0);
+insert into employees ("name", "age", "salary", "dept_id") values
+('Administrator2', 8, 1000, 0);
+
+-- Drop all tables if needed
+-- drop table "employees";
+-- drop table "departments"

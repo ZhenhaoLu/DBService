@@ -1,0 +1,32 @@
+Versions:
+    Hibernate: /hibernate
+    Spring JPA Repository: /jpa
+    get employee by id:
+        url: /{version}/employee/{id}
+        method: GET
+        status: OK, 400
+        response body: EmployeeDTO
+    create a new employee:
+            url: /{version}/employee
+            request body: EmployeeDTO
+            method: POST
+            status: OK, 400
+            response body: String
+    update an employee by id:
+            url: /{version}/employee
+            request body: EmployeeDTO
+            method: PUT
+            status: OK, 400
+            response body: EmployeeDTO
+    delete an employee by id:
+            url: /{version}/employee/{id}
+            method: DELETE
+            status: NO_CONTENT, 400
+    find a department by id: only for test
+
+Dynamic Query
+    find employee who is older than a specific age and belongs to a specific department name:
+            url: /criteria/employee/{age}/{name}
+            method: GET
+            status: OK, 400
+            response body: DynamicQueryDTO
