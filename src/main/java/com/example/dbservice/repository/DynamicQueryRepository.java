@@ -3,6 +3,7 @@ package com.example.dbservice.repository;
 import com.example.dbservice.pojo.dto.DynamicQueryDTO;
 import com.example.dbservice.pojo.entity.Departments;
 import com.example.dbservice.pojo.entity.Employees;
+import com.example.dbservice.service.IDynamicQueryService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class DynamicQueryRepository {
+public class DynamicQueryRepository{
     private final EntityManager entityManager;
     private final CriteriaBuilder criteriaBuilder;
 

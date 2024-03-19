@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public interface EmployeeJPARepository extends JpaRepository<Employees, Integer> {
     @Query("select e from Employees e where e.id = :employee_id")
     Optional<Employees> findById(@Param("employee_id") String employee_id);

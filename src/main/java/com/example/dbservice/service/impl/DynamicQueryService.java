@@ -2,13 +2,14 @@ package com.example.dbservice.service.impl;
 
 import com.example.dbservice.pojo.dto.DynamicQueryDTO;
 import com.example.dbservice.repository.DynamicQueryRepository;
+import com.example.dbservice.service.IDynamicQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class DynamicQueryService {
+public class DynamicQueryService implements IDynamicQueryService {
 
     private final DynamicQueryRepository dynamicQueryRepository;
 

@@ -6,8 +6,10 @@ import com.example.dbservice.repository.EmployeeJPARepository;
 import com.example.dbservice.service.IDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class JPAService implements IDBService{
 
     private final EmployeeJPARepository employeeJPARepository;
@@ -18,6 +20,7 @@ public class JPAService implements IDBService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public EmployeeDTO findEmployeeById(String id){
         return new EmployeeDTO(employeeJPARepository.findById(id).orElseThrow());
     }

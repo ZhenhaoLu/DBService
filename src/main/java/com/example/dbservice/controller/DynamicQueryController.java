@@ -1,6 +1,7 @@
 package com.example.dbservice.controller;
 
 import com.example.dbservice.pojo.dto.DynamicQueryDTO;
+import com.example.dbservice.service.IDynamicQueryService;
 import com.example.dbservice.service.impl.DynamicQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/criteria")
 public class DynamicQueryController {
 
-    private final DynamicQueryService dynamicQueryService;
+    private final IDynamicQueryService dynamicQueryService;
 
     @Autowired
     public DynamicQueryController(DynamicQueryService dynamicQueryService){

@@ -3,7 +3,6 @@ package com.example.dbservice.repository;
 import com.example.dbservice.pojo.entity.Employees;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,18 +23,15 @@ public class HibernateEmployeeRepository {
        return (Employees) query.getSingleResult();
     }
 
-    @Transactional
     public Integer insertEmployee(Employees e){
         entityManager.persist(e);
         return e.getId();
     }
 
-    @Transactional
     public Employees updateEmployee(Employees e){
         return entityManager.merge(e);
     }
 
-    @Transactional
     public void deleteEmployee(String employee_id){
         entityManager.remove(findByID(employee_id));
     }
